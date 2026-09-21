@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 // Pilha criada na main e passada para as funções
 
 #define MAX 100
