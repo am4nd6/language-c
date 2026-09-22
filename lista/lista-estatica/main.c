@@ -76,3 +76,41 @@ l->tamanho++;
 l->valores[pos]=valor;
 return 1;
 }
+
+int removePos(Lista *l, int pos){
+if(vazia(l) || pos<0 || pos>=l->tamanho){
+return 0;
+}
+
+if(pos!=l->tamanho-1){
+for(int i=pos; i<l->tamanho-1; i++){
+l->valores[i]=l->valores[i+1];
+}
+}
+
+l->tamanho--;
+return 1;
+
+}
+
+int removeValor(Lista *l, int valor){
+
+
+}
+
+int buscaPos(Lista *l, int pos){
+
+}
+
+int buscaValor(Lista *l, int valor){
+if(vazia(l)){
+return -1;
+}
+
+for(int i=0; i<=l->tamanho-1; i++){
+if(l->valores[i]==valor){
+return i;
+}
+}
+return -1;
+}
