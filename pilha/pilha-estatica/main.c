@@ -4,7 +4,7 @@
 
 #define MAX 100 // Constante global
 
-/* Pilha possui um vetor de valores e uma variável que sempre aponta para o que está no topo (último)
+/* Pilha estática possui um vetor de valores e uma variável que sempre aponta para o que está no topo (último)
 ela segue o principio de LIFO (Last In First Out) -> Último a entrar é o primeiro a sair.
 Topo = -1.
 */ 
