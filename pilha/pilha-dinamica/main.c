@@ -24,7 +24,7 @@ então para evitar quebra de ponteiro, retorna NULL.
 Inicia o topo em -1 e o tamanho em t (foi passado na função a quantidade total de valores).
 Faz um malloc no endereço do vetor valores com a quantidade de valores que serão alocados
 Verifica se valores é nulo, se for libera p e retorna NULL, também para evitar quebra de ponteiro.
-Por último retorna p, o enderço em que iniciou a alocação do tipo pilha.
+Por último retorna p, o endereço em que iniciou a alocação do tipo pilha.
 */
 
 Pilha* criaPilha(int t){
@@ -47,6 +47,9 @@ Pilha* criaPilha(int t){
 /* Verifica se a pilha está vazia, ou seja, se o topo é igual a -1*/
 
 int pilhaVazia(Pilha *p){
+    if(p == NULL){
+        return 1;
+    }
     return p->topo==-1;
 }
 
@@ -54,6 +57,9 @@ int pilhaVazia(Pilha *p){
 Lembre-se que o vetor começa em 0, então tamanho total vai ser tamanho-1.*/
 
 int pilhaCheia(Pilha *p){
+    if(p == NULL){
+        return 1;
+    }
     return p->topo==p->tamanho-1;
 }
 
