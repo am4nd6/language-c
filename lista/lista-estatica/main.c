@@ -7,7 +7,7 @@
 
 /*Para criar uma lista estática, você deve usar um vetor com uma constante global para definir o tamanho máximo.
 E uma variável para saber a quantidade real que tem no vetor, porque o MAX define o máximo, 
-mas ultimo o tamanho real dentro desse máximo.*/
+mas último + 1 o tamanho real dentro desse máximo.*/
 
 typedef struct lista{
     int valores[MAX];
@@ -30,6 +30,9 @@ Lista* criaLista(){
 /*Para destruir a lista, basta passar o endereço da lista e liberar o espaço alocado na memória*/
 
 void destroiLista(Lista *l){
+    if(l == NULL){
+        return;
+    }
     free(l);
 }
 
@@ -42,7 +45,7 @@ int conta(Lista* l){
 /*A função vazia verifica se a lista está vazia, se o tamanho for 0 então está vazia*/
 
 int vazia(Lista *l){
-    return l== NULL || l->ultimo==-1;
+    return l == NULL || l->ultimo==-1;
 }
 
 /*A função cheia verifica se a lista está cheia, se o tamanho for igual ao máximo então está cheia*/
@@ -132,6 +135,25 @@ int encontrei = 0;
 }
 
 /*
+A função buscaValor, passa a lista e um valor, verifica se está vazia
+se não estiver, percorre a lista, se encontrar o valor, retorna a primeira posição em que esse valor foi encontrado
+na lista, caso contrário, retorna -1
+*/
+
+int buscaPrimeiroValor(Lista *l, int valor){
+    if(l == NULL || vazia(l)){
+    return -1;
+    }
+
+    for(int i=0; i<=l->ultimo; i++){
+        if(l->valores[i]==valor){
+            return i;
+        }
+    }
+    return -1;
+}
+
+/*
 Remover a primeira posição em que o valor for encontrada. 
 */
 
@@ -140,9 +162,13 @@ int removePrimeiroValor(Lista *l, int valor){
         return 0;
     }
 
-gsdhfhdsfhfhdsfhsdfhhfdhfhh
-        return 0;
+    int x = buscaPrimeiroValor(l,valor);
 
+    if(x!=-1){
+        int r = removePos(l, x);
+        return r;
+    }
+    return 0;
 }
 
 
@@ -185,24 +211,6 @@ Lista* buscaTodosValores(Lista *l, int valor){
     return p;
 }
 
-/*
-A função buscaValor, passa a lista e um valor, verifica se está vazia
-se não estiver, percorre a lista, se encontrar o valor, retorna a primeira posição em que esse valor foi encontrado
-na lista, caso contrário, retorna -1
-*/
-
-int buscaPrimeiroValor(Lista *l, int valor){
-    if(l == NULL || vazia(l)){
-    return -1;
-    }
-
-    for(int i=0; i<=l->ultimo; i++){
-        if(l->valores[i]==valor){
-            return i;
-        }
-    }
-    return -1;
-}
 
 int main(){
     Lista *l = criaLista();

@@ -47,20 +47,14 @@ Pilha* criaPilha(int t){
 /* Verifica se a pilha está vazia, ou seja, se o topo é igual a -1*/
 
 int pilhaVazia(Pilha *p){
-    if(p == NULL){
-        return 1;
-    }
-    return p->topo==-1;
+    return p == NULL || p->topo==-1;
 }
 
 /* Verifica se a pilha está cheia, ou seja, se o topo é igual ao tamanho-1
 Lembre-se que o vetor começa em 0, então tamanho total vai ser tamanho-1.*/
 
 int pilhaCheia(Pilha *p){
-    if(p == NULL){
-        return 1;
-    }
-    return p->topo==p->tamanho-1;
+    return p == NULL || p->topo==p->tamanho-1;
 }
 
 /* Verifica se está cheia, se não estiver incrementa o topo
@@ -112,14 +106,14 @@ void liberaPilha(Pilha* p){
 /* Função main para testar a pilha*/
 
 int main(){
-Pilha *p;
-p = criaPilha(5);
-empilhar(p, 10);
-empilhar(p, 20);
-empilhar(p, 30);
-printf("%d", desempilhar(p));
-liberaPilha(p);
-return 0;
+    Pilha *p;
+    p = criaPilha(5);
+    empilhar(p, 10);
+    empilhar(p, 20);
+    empilhar(p, 30);
+    printf("%d", desempilhar(p));
+    liberaPilha(p);
+    return 0;
 }
 
 /* Funções de uma pilha:
