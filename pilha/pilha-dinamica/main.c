@@ -7,15 +7,13 @@
 /* Pilha dinâmica deve possuir um ponteiro para valores porque pode ser n valores em uma pilha.
 Por isso, ela recebe a quantidade de valores que deseja e aloca na memória.
 Depois, temos uma variável para saber quem está no topo e por último o tamanho para saber a quantidade
-que tem total de valores alocados. Tamanho = 0 e Topo = -1 significa que está vazia.
+que tem total de valores alocados. Tamanho representa a quantidade máxima to vetor e Topo = -1 significa que está vazia.
 Seguindo o princípio de LIFO (Last In First Out) -> Último a entrar é o primeiro a sair*/ 
 
 typedef struct pilha{
-
-int *valores;
-int topo;
-int tamanho;
-
+    int *valores;
+    int topo;
+    int tamanho;
 } Pilha;
 
 /* Retorna o endereço alocado do tipo pilha. 
@@ -30,46 +28,44 @@ Por último retorna p, o enderço em que iniciou a alocação do tipo pilha.
 */
 
 Pilha* criaPilha(int t){
-Pilha *p;
-p=malloc(sizeof(Pilha));
+    Pilha *p = malloc(sizeof(Pilha));
 
-if(p==NULL){
-return NULL;
-}
+    if(p==NULL){
+    return NULL;
+    }
 
-p->topo=-1;
-p->tamanho=t;
-p->valores= malloc(t* sizeof(int));
-if(p->valores==NULL){
-free(p);
-return NULL;
-}
-return p;
+    p->topo=-1;
+    p->tamanho=t;
+    p->valores= malloc(t* sizeof(int));
+    if(p->valores==NULL){
+        free(p);
+        return NULL;
+    }
+    return p;
 }
 
 /* Verifica se a pilha está vazia, ou seja, se o topo é igual a -1*/
 
 int pilhaVazia(Pilha *p){
-return p->topo==-1;
+    return p->topo==-1;
 }
 
 /* Verifica se a pilha está cheia, ou seja, se o topo é igual ao tamanho-1
 Lembre-se que o vetor começa em 0, então tamanho total vai ser tamanho-1.*/
 
 int pilhaCheia(Pilha *p){
-return p->topo==p->tamanho-1;
+    return p->topo==p->tamanho-1;
 }
 
 /* Verifica se está cheia, se não estiver incrementa o topo
 e adiciona o valor ao topo*/
 
 void empilhar(Pilha *p, int valor){
-
-if(pilhaCheia(p)){
-return;
-}
-p->topo++;
-p->valores[p->topo]=valor;
+    if(p == NULL || pilhaCheia(p)){
+        return;
+    }
+    p->topo++;
+    p->valores[p->topo]=valor;
 }
 
 /* Verifica se está vazia, se não estiver guarda o valor do topo em outra variável
@@ -78,15 +74,33 @@ porque se retornar 0 vai ser o valor 0 como se ele estivesse no topo da pilha
 e isso pode causar confusão*/
 
 int desempilhar(Pilha *p){
-if(pilhaVazia(p)){
-return -1;
+    if(p == NULL || pilhaVazia(p)){
+        return -1;
+    }
+
+    int x;
+    x = p->valores[p->topo];
+    p->topo--;
+
+    return x;
 }
 
-int x;
-x = p->valores[p->topo];
-p->topo--;
+// Retorna o valor que está no topo sem remover.
+int topoPilha(Pilha* p){
+    if(p == NULL || pilhaVazia(p)){
+        return -1;
+    }
+    return p->valores[p->topo];
+}
 
-return x;
+// Libera primeiro p->valores e depois a própria pilha.
+
+void liberaPilha(Pilha* p){
+    if(p == NULL){
+        return;
+    }
+    free(p->valores);
+    free(p);
 }
 
 /* Função main para testar a pilha*/
@@ -98,8 +112,7 @@ empilhar(p, 10);
 empilhar(p, 20);
 empilhar(p, 30);
 printf("%d", desempilhar(p));
-free(p->valores); // Libera a memória alocada para o vetor de valores
-free(p); // Libera a memória alocada para a pilha
+liberaPilha(p);
 return 0;
 }
 
@@ -107,7 +120,8 @@ return 0;
 - Criar a pilha
 - Verifica se está vazia
 - Verifica se está cheia
-- Empilha
-- Desempilha
-- Retorna o topo
+- Empilhar
+- Desempilhar
+- Retorna o topo sem remover
+- Libera Pilha
 */
