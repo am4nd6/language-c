@@ -140,17 +140,56 @@ int insereFinal(Lista* l, int valor){
     return 1;
 }
 
-/*oiiiiiii  */
+/* Recebe uma lista, uma posição e um valor. Verifica se a lista existe e se a posição é válida.
+SE estiver tudo certo, aloca uma memória para o novo nó, verifica se a locação funcionou.
+Se funcionou, coloca o valor do novo nó e aponta ele para null. Verifica se a posição é 0 
+(aqui não verifica se a lista tá vazia porque mesmo se tivesse vazia, a posição seria 0),
+além disso, se a lista estiver vazia e a posição for maior, ele já no primeiro if.
+Se a posição for igual a 0, então ele só adiciona o nó novo no início da lista e proóximo do nó aponta para o
+para o próximo do auxiliar.
+Se não for igual a 0, usa um for que vai de 0 até a posição inserida - 1. Deve parar no antepenúltimo.
+Pois, o auxiliar já aponta para o penúltimo, saindo do for, o próximo do novo deve apontar pro próximo
+do auxiliar, pois agora ele vai está apontando para o nó da posição certa. Depois apontar, o 
+próximo do penúltimo nó, para o novo nó, por fim, acrescentar +1 ao tamanho. */
 
-int inserePos(Lista* l){
-    if(listaVazia(l)){
+int inserePos(Lista* l, int pos, int valor){
+    if(!existe(l) || pos<0 || pos>l->tamanho){
         return 0;
     }
+
+    No* novo = malloc(sizeof(No));
+
+    if(!existe(novo)){
+        return 0;
+    }
+
+    novo->valor = valor;
+    novo->proximo = NULL;
+    No* aux = l->inicio;
+
+    if(pos==0){
+        l->inicio = novo;
+        novo->proximo = aux;
+    } else {
+        for(int i=0 ; i<pos-1; i++){
+            aux = aux->proximo;
+        }
+        novo->proximo = aux->proximo;
+        aux->proximo = novo;
+    }
+    l->tamanho++;
+    return 1;
 }
 
 /*  */
 
-buscaPos()
+int buscaPos(Lista* l, int pos){
+    if(listaVazia(l) || pos<0 || pos>l->tamanho){
+        return 0;
+    }
+
+
+}
 
 /*  */
 
