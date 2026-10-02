@@ -261,19 +261,33 @@ Lista* buscaTodasAchadas(Lista* l, int valor){
     return NULL;
 }
 
-/*  */
+/* Remover a posição passada. */
 
-removePos(){
+int removePos(Lista *l, int pos){
+    if(listaVazia(l) || pos<0 || pos>l->tamanho-1){
+        return 0;
+    }
 
+    No* aux = l->inicio;
+    No* prox = aux;
+
+    for(int i = 0; i<pos; i++){
+        aux = aux->proximo;
+        prox = aux->proximo;
+    } 
+    prox = prox->proximo;
+    aux->proximo = prox;
+    l->tamanho--;
+    return 1;
 }
 
-/*  */
+/* Receber um valor e remover a primeira posção achadas */
 
 removePrimeiraPos(){
 
 }
 
-/*  */
+/* Receber um valor e remover todas as posições achadas */
 
 removeTodasAsPos(){
 
