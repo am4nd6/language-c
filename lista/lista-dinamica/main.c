@@ -181,14 +181,29 @@ int inserePos(Lista* l, int pos, int valor){
     return 1;
 }
 
-/*  */
+/* Verifique se a lista existe e se a posição é válida.
+Como você vai retornar posição, lembre-se de SEMPRE diminuir -1 para poder retornar o 
+amanho verdadeiro das posições, lembre-se que elas sempre começam na posição 0. 
+Lembre-se de retornar sempre -1 ao invés de 0, para falso. 
+Depois, verifique se a lista está vazia. Se não estiver, crie um nó para auxiliar e faça ele receber
+o endereço da lista. Depois faça um for para fazer o auxilio receber o próximo, fazendo isso,
+retorne o valor.
+*/
 
 int buscaPos(Lista* l, int pos){
-    if(listaVazia(l) || pos<0 || pos>l->tamanho){
-        return 0;
+    if(!existe(l) || pos<0 || pos>l->tamanho-1){
+        return -1;
     }
 
+    if(listaVazia(l)){
+        return -1;
+    }
 
+    No* aux = l->inicio;
+    for(int i = 1; i <= pos; i++){
+        aux = aux->proximo;
+    }
+    return aux->valor;
 }
 
 /*  */
