@@ -227,10 +227,38 @@ int buscaPrimeiraAchado(Lista* l, int valor){
     return -1;
 }
 
-/*  */
+/* Recebe um ponteiro do tipo lista e um valor. Verifica se a lista existe e é válida.
+Se for, cria uma nova lista, verifica se ele existe, se existir, cria um nó auxiliar e um verificador, 
+um for começando da posição 0 e indo até tamanho-1, vai procurar se o valor
+do nó é igual ao valor inserido e se for insere na lista a posição achada. 
+Incrementa o verificador, que vai servir pra definir o tipo de retorno, se encontrado, retorna a lista
+se não libera a lista e retorna null. */
 
-buscaTodasAchadas(){
+Lista* buscaTodasAchadas(Lista* l, int valor){
+    if(listaVazia(l)){
+        return NULL;
+    }
 
+    Lista* p = criaLista();
+    if(!existe(p)){
+        return NULL;
+    }
+
+    No* aux = l->inicio;
+    int encontrei = 0;
+
+    for(int i = 0; i <= l->tamanho -1; i++){
+        if(aux->valor == valor){
+            insereFinal(p, i);
+            encontrei = 1;
+        }
+        aux = aux->proximo;
+    }
+    if(encontrei == 1){
+        return p;
+    }
+    free(p);
+    return NULL;
 }
 
 /*  */
