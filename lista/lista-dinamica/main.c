@@ -187,7 +187,7 @@ amanho verdadeiro das posições, lembre-se que elas sempre começam na posiçã
 Lembre-se de retornar sempre -1 ao invés de 0, para falso. 
 Depois, verifique se a lista está vazia. Se não estiver, crie um nó para auxiliar e faça ele receber
 o endereço da lista. Depois faça um for para fazer o auxilio receber o próximo, fazendo isso,
-retorne o valor.
+retorne o valor da posição pedida.
 */
 
 int buscaPos(Lista* l, int pos){
@@ -206,25 +206,50 @@ int buscaPos(Lista* l, int pos){
     return aux->valor;
 }
 
+/* Recebe um ponteiro do tipo lista e um valor. Verifica se a lista existe e é válida.
+Se for, cria um nó auxiliar, um for começando da posição 0 e indo até tamanho-1, vai procurar se o valor
+do nó é igual ao valor inserido e se for retorna a posição achada. Ou seja, esta função 
+retorna a primeira posição em que o valor inserido foi achado. */
+
+int buscaPrimeiraAchado(Lista* l, int valor){
+    if(listaVazia(l)){
+        return -1;
+    }
+
+    No* aux = l->inicio;
+
+    for(int i = 0; i<=l->tamanho-1; i++){
+        if(aux->valor==valor){
+            return i;
+        }
+        aux = aux->proximo;
+    }
+    return -1;
+}
+
 /*  */
 
-buscaTodasAchadas()
+buscaTodasAchadas(){
+
+}
 
 /*  */
 
-buscaPrimeiraAchado()
+removePos(){
+
+}
 
 /*  */
 
-removePos()
+removePrimeiraPos(){
+
+}
 
 /*  */
 
-removeTodasAsPos()
+removeTodasAsPos(){
 
-/*  */
-
-removePrimeiraPos()
+}
 
 /*  */
 
