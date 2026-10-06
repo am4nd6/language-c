@@ -261,35 +261,56 @@ Lista* buscaTodasAchadas(Lista* l, int valor){
     return NULL;
 }
 
-/* Remover a posição passada. */
+/* Verifica se a lista e a posição são válidas. Crie um ponteiro auxiliar para pecorrer a lista.
+crie um outro ponteiro para receber o ponteiro que deve ser removido. Verifica se a posição é a inicial,
+se for faz o início apontar para o próximo do auxiliar. Se não, cria um outro ponteiro para pular 
+o ponteiro que deve ser removido, pecorra a lista e o auxiliar para no penúltimo,
+antes da posição que deve ser removida. Enquanto isso "prox" sempre recebe um ponteiro posterior.
+Depois disso, removido recebe o prox, porque ele vai parar justamente na posição que deve ser removida, prox recebe
+o ponteiro depois do que deve ser removido, e aux passar a receber prox, depois libera o removido e por fim, remover mais um do tamanho total da lista.
 
-int removePos(Lista *l, int pos){
-    if(listaVazia(l) || pos<0 || pos>l->tamanho-1){
+Remover a posição passada. */
+
+int removePos(Lista* l, int pos){
+    if(listaVazia(l) || pos<0 || pos>=l->tamanho){
         return 0;
     }
 
     No* aux = l->inicio;
-    No* prox = aux;
+    No* removido;
+    if(pos == 0){
+        l->inicio=aux->proximo;
+        removido = aux;
+    }
+    else {
 
-    for(int i = 0; i<pos; i++){
-        aux = aux->proximo;
-        prox = aux->proximo;
-    } 
-    prox = prox->proximo;
-    aux->proximo = prox;
-    l->tamanho--;
+        No* prox = aux->proximo;
+
+        for(int i = 0; i<pos-1; i++){
+            aux=aux->proximo;
+            prox=aux->proximo;
+        }
+        removido = prox;
+        prox = prox->proximo;
+        aux->proximo=prox;
+    }
+
+    free(removido);
+    l->tamanho--;                           
+
     return 1;
 }
 
-/* Receber um valor e remover a primeira posção achadas */
+/* Receber um valor e remover a primeira posição achada */
 
-removePrimeiraPos(){
+removePrimeiraPos(Lista* l, int valor){
 
 }
 
+
 /* Receber um valor e remover todas as posições achadas */
 
-removeTodasAsPos(){
+removeTodasAsPos(Lista* l){
 
 }
 
