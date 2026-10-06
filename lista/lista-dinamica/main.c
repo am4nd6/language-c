@@ -268,8 +268,7 @@ o ponteiro que deve ser removido, pecorra a lista e o auxiliar para no penúltim
 antes da posição que deve ser removida. Enquanto isso "prox" sempre recebe um ponteiro posterior.
 Depois disso, removido recebe o prox, porque ele vai parar justamente na posição que deve ser removida, prox recebe
 o ponteiro depois do que deve ser removido, e aux passar a receber prox, depois libera o removido e por fim, remover mais um do tamanho total da lista.
-
-Remover a posição passada. */
+ */
 
 int removePos(Lista* l, int pos){
     if(listaVazia(l) || pos<0 || pos>=l->tamanho){
@@ -301,10 +300,21 @@ int removePos(Lista* l, int pos){
     return 1;
 }
 
-/* Receber um valor e remover a primeira posição achada */
+/* Verifica se a lista é válida. Chama a função para buscar a primeira posição achada em que existe o valor passado,
+verifica se o x!=1 e se não for, chama a função de remover na posição do x */
 
-removePrimeiraPos(Lista* l, int valor){
+int removePrimeiraPos(Lista* l, int valor){
+    if(listaVazia(l)){
+        return 0;
+    }
 
+    int x = buscaPrimeiraAchado(l, valor);
+    if(x!=-1){
+        removePos(l, x);
+        return 1;
+    }
+
+    return 0;
 }
 
 
