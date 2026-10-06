@@ -318,10 +318,28 @@ int removePrimeiraPos(Lista* l, int valor){
 }
 
 
-/* Receber um valor e remover todas as posições achadas */
+/*  fgbhfghrfhgjfgfgffdfhf terminarrrrrrrrr
+Receber um valor e remover todas as posições achadas 
 
-removeTodasAsPos(Lista* l){
+*/
 
+int removeTodasAsPos(Lista* l, int valor){
+    if(listaVazia(l)){
+        return 0;
+    }
+
+    Lista* p = buscaTodasAchadas(l, valor);
+    
+    if(listaVazia(p)){
+        retun 0;
+    }
+
+    No* aux = p->inicio;
+    while(aux!=NULL){
+        removePos(l, aux->valor);
+        aux=aux->proximo;
+    }
+    return 1;
 }
 
 /*  */
