@@ -318,9 +318,12 @@ int removePrimeiraPos(Lista* l, int valor){
 }
 
 
-/*  fgbhfghrfhgjfgfgffdfhf terminarrrrrrrrr
-Receber um valor e remover todas as posições achadas 
-
+/* Recebe uma lista e um valor, verifica se a lista é válida, cria uma lista que vai 
+guardar todas as posições em que foi achada aquele valor na lista por meio da função
+buscarTodasAchadas. Após isso, verificar se a lista p não está vazia, e depois percorrer a lista p
+criando um cont que vai remover as posições, isso ajuda na mudança de posição ao remover um item.
+Chama a função que remove na posição, passando os valores da lista p para remover na lista l, após isso,
+destrua a lista p e retorne 1
 */
 
 int removeTodasAsPos(Lista* l, int valor){
@@ -331,14 +334,17 @@ int removeTodasAsPos(Lista* l, int valor){
     Lista* p = buscaTodasAchadas(l, valor);
     
     if(listaVazia(p)){
-        retun 0;
+        return 0;
     }
 
     No* aux = p->inicio;
+    int cont = 0;
     while(aux!=NULL){
-        removePos(l, aux->valor);
+        removePos(l, aux->valor-cont);
+        cont++;
         aux=aux->proximo;
     }
+    destruirLista(p);
     return 1;
 }
 
