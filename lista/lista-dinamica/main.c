@@ -119,8 +119,8 @@ int insereFinal(Lista* l, int valor){
     }
 
     No* novo = malloc(sizeof(No));
-    if(!existe(novo)){
-        return NULL;
+    if(novo==NULL){
+        return 0;
     }
     
     novo->valor = valor;
@@ -159,7 +159,7 @@ int inserePos(Lista* l, int pos, int valor){
 
     No* novo = malloc(sizeof(No));
 
-    if(!existe(novo)){
+    if(novo==NULL){
         return 0;
     }
 
@@ -348,9 +348,24 @@ int removeTodasAsPos(Lista* l, int valor){
     return 1;
 }
 
-/*  */
+/* Função main */
 
-main()
+int main(){
+
+    Lista * l = criaLista();
+
+    if(l==0){
+        return 1;
+    }
+
+    insereFinal(l, 10);
+    insereFinal(l, 30);
+    insereFinal(l, 20);
+    inserePos(l, 1, 70);
+    imprime(l);
+    destruirLista(l);
+    return 0;
+}
 
 
 /* Funções de uma lista dinâmica:
